@@ -36,7 +36,7 @@ public class MessageController {
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void insertMessage(@RequestBody Message message) {
-        this.messageService.insertMessage(message);
+    public Message insertMessage(@RequestBody String content) {
+        return this.messageService.insertMessage(content);
     }
 }

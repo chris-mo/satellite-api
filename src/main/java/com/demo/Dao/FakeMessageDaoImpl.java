@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Repository
-public class FakeMessageDaoImpl implements MessageDao {
+public class FakeMessageDaoImpl  {
 
     private static Map<Integer, Message> messages;
 
@@ -21,22 +21,18 @@ public class FakeMessageDaoImpl implements MessageDao {
         };
     }
 
-    @Override
     public Collection<Message> getAllMessages() {
         return this.messages.values();
     }
 
-    @Override
     public Message getMessageById(int id) {
         return this.messages.get(id);
     }
 
-    @Override
     public void removeMessageById(int id) {
         this.messages.remove(id);
     }
 
-    @Override
     public void updateMessage(Message message) {
         Message m = this.messages.get(message.getId());
 
@@ -48,8 +44,16 @@ public class FakeMessageDaoImpl implements MessageDao {
         this.messages.put(message.getId(), message);
     }
 
-    @Override
-    public void insertMessage(Message message) {
+    public Message insertMessage(String content) {
+        Message message = new Message();
+        message.setId(this.messages.values().size() + 1);
+        message.setConversationId(1);
+        message.setContent(content);
+        message.setSender("test@test.com");
+        message.setReadStatus(false);
+        message.setOwner(false);
+
         this.messages.put(message.getId(), message);
+        return message;
     }
 }

@@ -1,6 +1,6 @@
 package com.demo.Service;
 
-import com.demo.Dao.MessageDao;
+import com.demo.Dao.FakeMessageDaoImpl;
 import com.demo.Entity.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import java.util.Collection;
 public class MessageService {
 
     @Autowired
-    private MessageDao messageDao;
+    private FakeMessageDaoImpl messageDao;
 
     public Collection<Message> getAllMessages() {
         return this.messageDao.getAllMessages();
@@ -29,7 +29,7 @@ public class MessageService {
         this.messageDao.updateMessage(message);
     }
 
-    public void insertMessage(Message message) {
-        this.messageDao.insertMessage(message);
+    public Message insertMessage(String content) {
+        return this.messageDao.insertMessage(content);
     }
 }
